@@ -19,7 +19,7 @@ export default authMiddleware({
       return NextResponse.redirect(orgSelection);
     }
 
-    if (!auth.userId && !auth.isPublicRoute) {
+    if (!auth.userId && !auth.isPublicRoute) { 
       return redirectToSignIn({ returnBackUrl: req.url });
     }
 
