@@ -38,7 +38,7 @@ export const MobileSidebar = () => {
         variant="ghost"
         size="sm"
       >
-        <Menu className="h-4 w-4" />
+        <Menu className="h-6 w-6" />
       </Button>
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent
