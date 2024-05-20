@@ -1,4 +1,4 @@
-import { createBoard } from '@/actions/create-board';
+import { createBoard } from '@/actions/create-dashboard';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/db';
 import React from 'react'
