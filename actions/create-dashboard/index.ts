@@ -8,18 +8,30 @@ import { createSafeAction } from "@/lib/create-safe-action";
 import { CreateBoard } from "./schema";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
-  const { userId } = auth();
-  if(!userId) {
+  const { userId, orgId } = auth();
+  if(!userId || !orgId) {
     return {
       error: 'User not authenticated'
     }
   }
-  const { title } = data;
+  const { title, image } = data;
+  const [imageId, imageThumbUrl, imageFullUrl, imageUserName, imageLinkHtml] = image.split('|');
+  if(!title || !imageId || !imageThumbUrl || !imageFullUrl || !imageUserName || !imageLinkHtml) {
+    return {
+      error: 'Invalid image data'
+    }
+  }
   let board;
   try {
     board = await db.board.create({
       data: {
+        orgId,
         title,
+        imageId,
+        imageThumbUrl,
+        imageFullUrl,
+        imageUserName,
+        imageLinkHtml,
       }
     })
   } catch (error) {
