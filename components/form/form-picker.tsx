@@ -51,7 +51,7 @@ export const FormPicker: React.FC<FormPickerProps> = ({ id, errors }) => {
         <div className=' relative'>
            <div className=' grid grid-cols-3 gap-2 mb-2'>
             {
-                images?.map((image, index) => {
+                images?.map((image) => {
                     return (
                         <div key={image.id} className={cn(
                             'cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted',
@@ -70,6 +70,7 @@ export const FormPicker: React.FC<FormPickerProps> = ({ id, errors }) => {
                                 className=' hidden '
                                 checked={selectedImageId === image.id}
                                 disabled={pending}
+                                onChange={() => {}}
                             />
                             <Image 
                                 alt='Unsplash image'

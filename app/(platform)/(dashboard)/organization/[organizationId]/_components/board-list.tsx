@@ -51,7 +51,7 @@ export const BoardList = async () => {
                         Create new board
                     </p>
                     <span className=' text-xs'>
-                            5 remaining
+                            {5 - boards?.length} remaining
                     </span>
                     <Hint
                         sideOffset={40}
