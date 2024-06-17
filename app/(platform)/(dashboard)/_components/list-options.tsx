@@ -1,5 +1,6 @@
 'use client';
 
+import { copyList } from "@/actions/copy-list";
 import { deleteList } from "@/actions/delete-list";
 import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
@@ -46,6 +47,25 @@ const ListOptions = ({
         })
     }
 
+    const { run: executeCopy } = useAction(copyList, {
+        onSuccess: (data) => {
+            toast.success(`List ${data.title} copied`)
+            closeRef.current?.click();
+        },
+        onError: (error) => {
+            toast.error(error)
+        }
+    })
+
+    const onCopy = (formData: FormData) => {
+        const id = formData.get('id') as string;
+        const boardId = formData.get('boardId') as string;
+        executeCopy({
+            id,
+            boardId
+        })
+    }
+
     return (
     <Popover>
        <PopoverTrigger asChild ref={closeRef}>
@@ -71,7 +91,7 @@ const ListOptions = ({
             >
                 Add card...
             </Button> 
-                <form>
+                <form action={onCopy}>
                     <input
                         hidden
                         name="id"
