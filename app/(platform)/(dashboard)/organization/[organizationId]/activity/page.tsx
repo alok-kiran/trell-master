@@ -4,7 +4,6 @@ import { Separator } from "@/components/ui/separator";
 
 import { Info } from "../_components/info";
 
-// import { checkSubscription } from "@/lib/subscription";
 import { ActivityList } from "./_components/activity-list";
 import { checkSubscription } from "@/lib/subscription";
 

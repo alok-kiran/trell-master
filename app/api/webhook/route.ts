@@ -44,10 +44,6 @@ export async function POST(req: Request) {
       },
     });
   }
-// stripe key
-  // fancy-excel-sharp-elite
-
-  //webhook secret - whsec_dfd7835cae60aa66ce53668e61b33501159a4d16f20347d17dd5593507559421
 
   if (event.type === "invoice.payment_succeeded") {
     const subscription = await stripe.subscriptions.retrieve(
