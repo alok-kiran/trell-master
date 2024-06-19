@@ -25,16 +25,16 @@ export const useAction = <TInput, TOutput>(
 
         const result = await action(data);
 
-        if (result.fieldErrors) {
+        if (result?.fieldErrors) {
             setFieldErrors(result.fieldErrors);
         }
 
-        if (result.error) {
+        if (result?.error) {
             setError(result.error);
             options.onError?.(result.error);
         }
 
-        if (result.data) {
+        if (result?.data) {
             setData(result.data);
             options.onSuccess?.(result.data);
         }

@@ -1,7 +1,10 @@
 import { FormPopover } from '@/components/form/form-popover'
 import { Hint } from '@/components/hint'
 import { Skeleton } from '@/components/ui/skeleton'
+import { MAX_FREE_BOARDS } from '@/constants/boards'
 import { db } from '@/lib/db'
+import { getAvailableCount } from '@/lib/org-limit'
+import { checkSubscription } from '@/lib/subscription'
 import { auth } from '@clerk/nextjs'
 import { User2, HelpCircle } from 'lucide-react'
 import Link from 'next/link'
@@ -20,6 +23,9 @@ export const BoardList = async () => {
             createdAt: 'desc'
         }
     })
+
+    const availableBoards = await getAvailableCount();
+    const isPro = await checkSubscription();
     return (
         <div className='space-y-4'>
            <div className=" flex items-center font-semibold text-lg text-neutral-700">
@@ -51,7 +57,7 @@ export const BoardList = async () => {
                         Create new board
                     </p>
                     <span className=' text-xs'>
-                            {5 - boards?.length} remaining
+                            {isPro ? 'Unlimited' : `${MAX_FREE_BOARDS - availableBoards}`} remaining
                     </span>
                     <Hint
                         sideOffset={40}
