@@ -8,6 +8,6 @@ export const UpdateCard = z.object({
     message: "Title must be at least 3 characters",
   }),
   boardId: z.string(),
-  description: z.string(),
   id: z.string(),
+  description: z.string().optional(),
 });

@@ -51,7 +51,6 @@ export const Header = ({
             id: data.id,
             title,
             boardId,
-            description: data.description || '',
         };
         run(payload);
     }

@@ -16,10 +16,9 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         };
         }
     const { id, boardId, ...values } = data;  
+    console.log(['values', values])
     let card;  
         try {
-            console.log(['card update']);
-
             card = await db.card.update({
                 where: {
                     id,
@@ -33,7 +32,6 @@ const handler = async (data: InputType): Promise<ReturnType> => {
                     ...values,
                 },
             });
-            console.log(card);
         } catch (error) {
             console.error(error);
             return {
